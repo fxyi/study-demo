@@ -5,14 +5,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
+  <style>
+    .target {
+      width: 400px;
+      height: 200px;
+      border: 1px solid #222;
+    }
+  </style>
 </head>
 
 <body>
-  <user-card
-    image="https://semantic-ui.com/images/avatar2/large/kristy.png"
-    name="User Name"
-    email="yourmail@some-email.com"
-  ></user-card>
+  <user-card id="card" image="https://semantic-ui.com/images/avatar2/large/kristy.png" name="User Name"
+    email="yourmail@some-email.com"></user-card>
+
+  <div class="source">
+    <ul>
+      <li draggable="true" ondragstart="dragstart()">这是一段文字1</li>
+      <li draggable="true">这是一段文字2</li>
+      <li draggable="true">这是一段文字3</li>
+      <li draggable="true">这是一段文字4</li>
+      <li draggable="true">这是一段文字5</li>
+    </ul>
+    <div class="target" ondragover="return false;"></div>
+  </div>
+
+  <script>
+    const lis = document.querySelectorAll('li')
+    lis.forEach((item, index) => {
+      item.ondragstart = (e) => {
+        e.dataTransfer.setData('text', index)
+      }
+    })
+    const target = document.querySelector('.target')
+    target.ondrop = (e) => {
+      e.preventDefault()
+      const index = e.dataTransfer.getData('text')
+      console.log(index)
+    }
+
+    const shadow = document.querySelector('#card')
+    const box = shadow.querySelector('.box')
+    console.log('box', box)
+</script>
 
   <template id="userCardTemplate">
     <style>

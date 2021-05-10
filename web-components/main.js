@@ -1,8 +1,7 @@
 class UserCard extends HTMLElement {
   constructor() {
     super();
-    var shadow = this.attachShadow( { mode: 'closed' } );
-    console.log('shadow', shadow)
+    var shadow = this.attachShadow( { mode: 'open' } );
 
     var templateElem = document.getElementById('userCardTemplate');
     /**
