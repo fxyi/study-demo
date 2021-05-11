@@ -15,6 +15,9 @@ class UserCard extends HTMLElement {
 
 
     shadow.appendChild(content);
+
+    window.shadow = shadow
   }
 }
+
 window.customElements.define('user-card', UserCard);
